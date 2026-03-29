@@ -6,7 +6,6 @@ import Home from "./pages/Home.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Logout from "./lib/Logout.jsx";
-import RegisterAndLogout from "./lib/RegisterAndLogout.jsx";
 
 function App() {
   return (
@@ -22,7 +21,7 @@ function App() {
         />
         <Route path='/login' element={<Login />} />
         <Route path='/logout' element={<Logout />} />
-        <Route path='/register' element={<RegisterAndLogout />} />
+        <Route path='/register' element={<Register />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
