@@ -8,9 +8,20 @@ https://docs.djangoproject.com/en/6.0/howto/deployment/asgi/
 """
 
 import os
-
 from django.core.asgi import get_asgi_application
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.security.websocket import AllowedHostsOriginValidator
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 
-application = get_asgi_application()
+# Must call get_asgi_application() before importing any Django models / apps
+django_asgi_app = get_asgi_application()
+
+import api.routing  # noqa: E402 — import after Django setup
+
+application = ProtocolTypeRouter({
+    'http': django_asgi_app,
+    'websocket': AllowedHostsOriginValidator(
+        URLRouter(api.routing.websocket_urlpatterns)
+    ),
+})
