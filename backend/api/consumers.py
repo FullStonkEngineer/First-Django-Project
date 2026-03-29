@@ -32,14 +32,10 @@ class NoteConsumer(AsyncWebsocketConsumer):
             await self.channel_layer.group_discard(self.group_name, self.channel_name)
 
     async def receive(self, text_data=None, bytes_data=None):
-        # This is a server-push–only socket; client messages are ignored.
         pass
 
-    # Called by channel layer when services.py calls group_send with type "note.event"
     async def note_event(self, event):
         await self.send(text_data=json.dumps(event['data']))
-
-    # ── Helpers ───────────────────────────────────────────────────────────────
 
     def _parse_token(self):
         query_string = self.scope.get('query_string', b'').decode()
