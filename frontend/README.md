@@ -1,9 +1,6 @@
 # Notes App
 
 A full-stack notes application built to demonstrate production-ready patterns across the Django and React ecosystems.
-
-**Live demo:** [your-deployment-url.com](https://your-deployment-url.com) · **Backend:** Railway · **Frontend:** Vercel
-
 ---
 
 ## Stack
@@ -271,25 +268,6 @@ python manage.py test api.tests.NoteWebSocketTests
 | `NoteSearchTests`    | full-text search, tag filtering, combined filters                           |
 | `NoteAPITests`       | auth enforcement, CRUD, pagination, search, tag endpoints (via `APIClient`) |
 | `NoteWebSocketTests` | JWT auth, rejection, end-to-end broadcast from service layer → WS client    |
-
----
-
-## Deployment
-
-### Backend — Railway
-
-1. Create a new Railway project, connect the repo, add a **PostgreSQL** plugin
-2. Set env vars: `SECRET_KEY`, `DEBUG=False`, `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`
-3. Set the start command: `daphne -b 0.0.0.0 -p $PORT backend.asgi:application`
-4. Run migrations via the Railway shell: `python manage.py migrate`
-
-> **WebSockets at scale:** The default `InMemoryChannelLayer` works for a single instance. For horizontal scaling, add a Redis plugin to Railway and switch to `channels_redis` in `CHANNEL_LAYERS`.
-
-### Frontend — Vercel
-
-1. Import the `frontend/` directory into Vercel
-2. Set `VITE_API_URL` to your Railway backend URL
-3. Deploy — Vercel auto-detects Vite
 
 ---
 
