@@ -1,9 +1,6 @@
 # Notes App
 
 A full-stack notes application built to demonstrate production-ready patterns across the Django and React ecosystems.
-
-**Live demo:** [your-deployment-url.com](https://your-deployment-url.com) · **Backend:** Railway · **Frontend:** Vercel
-
 ---
 
 ## Stack
